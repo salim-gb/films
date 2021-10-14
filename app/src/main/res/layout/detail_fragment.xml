@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/content_start"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/margin_normal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/content_end"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/margin_normal" />
+
+    <TextView
+        android:id="@+id/filmTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:includeFontPadding="false"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        app:layout_constraintBottom_toTopOf="@+id/filmPosterImageView"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:layout_constraintStart_toStartOf="@id/content_start"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Человек-паук: Через Вселенные" />
+
+    <ImageView
+        android:id="@+id/filmPosterImageView"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_height="200dp"
+        android:layout_marginEnd="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@+id/filmTitleTextView"
+        app:layout_constraintStart_toStartOf="@id/content_start"
+        tools:background="@tools:sample/avatars"
+        app:layout_constraintEnd_toStartOf="@+id/filmDateReleaseLabel"/>
+
+    <TextView
+        android:id="@+id/filmDateReleaseLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        tools:text="Release date: "
+        android:text="@string/release_dated"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:fontFamily="sans-serif"
+        app:layout_constraintStart_toEndOf="@+id/filmPosterImageView"
+        app:layout_constraintEnd_toStartOf="@+id/filmDateRelease"
+        app:layout_constraintTop_toBottomOf="@+id/filmTitleTextView"/>
+
+    <TextView
+        android:id="@+id/filmDateRelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        tools:text="@tools:sample/date/ddmmyy"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:fontFamily="sans-serif"
+        app:layout_constraintStart_toEndOf="@+id/filmDateReleaseLabel"
+        app:layout_constraintEnd_toEndOf="@id/content_end"
+        app:layout_constraintTop_toBottomOf="@+id/filmTitleTextView"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

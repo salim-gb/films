@@ -1,4 +1,4 @@
-package com.example.films.ui.main.favorite
+package com.example.films.ui.favorite
 
 import androidx.fragment.app.Fragment
 import com.example.films.R
