@@ -1,4 +1,4 @@
-package com.example.films.ui.main.home
+package com.example.films.ui.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.films.R
 import com.example.films.data.Film
-import timber.log.Timber
 
 class FilmsAdapter(private val onClick: (Film) -> Unit) :
     ListAdapter<Film, FilmsAdapter.FilmsViewHolder>(FilmDiffCallback) {
