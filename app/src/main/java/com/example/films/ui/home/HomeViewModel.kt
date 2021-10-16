@@ -1,20 +1,25 @@
 package com.example.films.ui.home
 
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.films.data.DataSource
+import com.example.films.AppState
+import com.example.films.model.repository.Repository
+import java.lang.Thread.sleep
 
-class HomeViewModel(dataSource: DataSource) : ViewModel() {
+class HomeViewModel(private val repository: Repository) : ViewModel(), LifecycleObserver {
 
-    val filmsLiveData = dataSource.getFilmsList()
-}
+    private val _liveData = MutableLiveData<AppState>()
+    fun getLiveData(): LiveData<AppState> = _liveData
 
-class HomeViewModelFactory : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return HomeViewModel(dataSource = DataSource.getDataSource()) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
+    fun getFilmsData() {
+        _liveData.value = AppState.Loading
+        Thread {
+            sleep(1000)
+            _liveData.postValue(
+                AppState.Success(repository.getFilmsFromLocalStorage())
+            )
+        }.start()
     }
 }

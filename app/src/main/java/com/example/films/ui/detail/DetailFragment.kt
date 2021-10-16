@@ -1,9 +1,7 @@
 package com.example.films.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -12,11 +10,9 @@ import com.example.films.R
 import com.example.films.databinding.DetailFragmentBinding
 import timber.log.Timber
 
-class DetailFragment: Fragment(R.layout.detail_fragment) {
+class DetailFragment : Fragment(R.layout.detail_fragment) {
 
-    private val filmDetailViewModel by viewModels<FilmDetailViewModel> {
-        FilmDetailViewModelFactory()
-    }
+    private val filmDetailViewModel: FilmDetailViewModel by viewModels()
 
     private var _binding: DetailFragmentBinding? = null
     private val binding get() = _binding!!
