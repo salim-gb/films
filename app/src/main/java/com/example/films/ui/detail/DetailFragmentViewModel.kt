@@ -1,24 +1,18 @@
 package com.example.films.ui.detail
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.films.data.DataSource
-import com.example.films.data.Film
-import java.lang.IllegalArgumentException
+import com.example.films.model.entities.Film
 
-class FilmDetailViewModel(private val dataSource: DataSource): ViewModel() {
+class FilmDetailViewModel : ViewModel() {
+    private val _liveData = MutableLiveData(Film.filmList())
+    private val liveData: LiveData<List<Film>> = _liveData
 
-    fun getFilmForId(id: Long) : Film? {
-        return dataSource.getFilmForId(id)
-    }
-}
-
-class FilmDetailViewModelFactory() : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(FilmDetailViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return FilmDetailViewModel(DataSource.getDataSource()) as T
+    fun getFilmForId(id: Long): Film? {
+        liveData.value?.let { films ->
+            return films.firstOrNull { it.id == id }
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        return null
     }
 }

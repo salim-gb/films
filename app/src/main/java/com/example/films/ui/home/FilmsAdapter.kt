@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.films.R
-import com.example.films.data.Film
+import com.example.films.model.entities.Film
 
 class FilmsAdapter(private val onClick: (Film) -> Unit) :
     ListAdapter<Film, FilmsAdapter.FilmsViewHolder>(FilmDiffCallback) {
