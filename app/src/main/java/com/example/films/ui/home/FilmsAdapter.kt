@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.TimePicker
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.films.R
 import com.example.films.model.entities.Film
+import timber.log.Timber
 
 class FilmsAdapter(private val onClick: (Film) -> Unit) :
     ListAdapter<Film, FilmsAdapter.FilmsViewHolder>(FilmDiffCallback) {
@@ -36,11 +38,10 @@ class FilmsAdapter(private val onClick: (Film) -> Unit) :
             filmTitle.text = film.title
             filmReleaseDate.text = film.release_date
             Glide.with(itemView)
-                .load(film.poster_path)
+                .load("https://image.tmdb.org/t/p/w500/${film.poster_path}")
                 .centerCrop()
                 .into(filmImageView)
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmsViewHolder {
@@ -63,5 +64,4 @@ object FilmDiffCallback : DiffUtil.ItemCallback<Film>() {
     override fun areContentsTheSame(oldItem: Film, newItem: Film): Boolean {
         return oldItem.id == newItem.id
     }
-
 }
