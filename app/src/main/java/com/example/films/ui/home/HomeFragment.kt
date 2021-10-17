@@ -1,7 +1,9 @@
 package com.example.films.ui.home
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,10 +22,13 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private val binding get() = _binding!!
 
     private fun adapterOnClick(film: Film) {
-        val action = HomeFragmentDirections.actionHomeToDetail(film.id)
-        findNavController().navigate(action)
+        val action = film.id?.let { HomeFragmentDirections.actionHomeToDetail(it) }
+        if (action != null) {
+            findNavController().navigate(action)
+        }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,6 +49,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         when (appState) {
             is AppState.Success -> {
                 homeFragmentLoading.visibility = View.GONE
+                homeFragmentLoadingFail.visibility = View.GONE
                 filmsAdapter = FilmsAdapter { film ->
                     adapterOnClick(film)
                 }.apply {
@@ -52,12 +58,12 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                 binding.homeRecyclerView.adapter = filmsAdapter
             }
             is AppState.Loading -> {
-                binding.root.showSnackBar(R.string.loading)
                 homeFragmentLoading.visibility = View.VISIBLE
             }
             is AppState.Error -> {
-                binding.root.showSnackBar(R.string.error)
                 homeFragmentLoading.visibility = View.GONE
+                homeFragmentLoadingFail.visibility = View.VISIBLE
+                binding.root.showSnackBar(appState.error.toString())
             }
         }
     }
