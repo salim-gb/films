@@ -1,5 +1,7 @@
 package com.example.films.ui.home
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -11,10 +13,13 @@ import com.example.films.AppState
 import com.example.films.R
 import com.example.films.databinding.HomeFragmentBinding
 import com.example.films.model.entities.Film
+import com.example.films.receivers.MainBroadcastReceiver
 import com.example.films.showSnackBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(R.layout.home_fragment) {
+    private val receiver = MainBroadcastReceiver()
+
     private val viewModel: HomeViewModel by viewModel()
     private var filmsAdapter: FilmsAdapter? = null
 
@@ -26,6 +31,13 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         if (action != null) {
             findNavController().navigate(action)
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        context?.registerReceiver(receiver, IntentFilter(
+            ConnectivityManager.CONNECTIVITY_ACTION
+        ))
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -70,6 +82,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     override fun onDestroyView() {
         _binding = null
+        context?.unregisterReceiver(receiver)
         super.onDestroyView()
     }
 
