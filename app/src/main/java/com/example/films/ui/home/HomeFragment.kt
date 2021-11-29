@@ -56,6 +56,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                 }.apply {
                     submitList(appState.filmData as MutableList<Film>)
                 }
+
                 binding.homeRecyclerView.adapter = filmsAdapter
             }
             is AppState.Loading -> {

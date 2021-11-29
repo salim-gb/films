@@ -7,7 +7,8 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.films.AppState
 import com.example.films.R
 import com.example.films.databinding.DetailFragmentBinding
@@ -54,11 +55,14 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
     private fun showFilm(film: Film, view: View?) {
         binding.filmTitleTextView.text = film.title
         if (view != null) {
-            Glide.with(view)
-                .load("https://image.tmdb.org/t/p/w500/${film.poster_path}")
-                .centerCrop()
-                .into(binding.filmPosterImageView)
+            binding.filmPosterImageView
+                .load("https://image.tmdb.org/t/p/w500/${film.poster_path}") {
+                    crossfade(true)
+                    placeholder(R.drawable.movie_placeholder)
+                    transformations(CircleCropTransformation())
+                }
         }
+
         binding.filmDateRelease.text = film.release_date
     }
 

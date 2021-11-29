@@ -8,4 +8,6 @@
     <string name="loading">Loading</string>
     <string name="error_connection">No connection to the internet</string>
     <string name="something_wrong">Something went wrong!!!</string>
+    <string name="search">Search</string>
+    <string name="films_search">Search Films</string>
 </resources>

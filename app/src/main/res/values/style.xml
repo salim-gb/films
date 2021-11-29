@@ -10,4 +10,8 @@
         <item name="colorOnPrimary">@color/blueAccent_700</item>
         <item name="backgroundTint">@color/white</item>
     </style>
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources>
