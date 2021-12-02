@@ -20,7 +20,6 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
         ViewModelProvider(this).get(DetailsViewModel::class.java)
     }
 
-
     private var _binding: DetailFragmentBinding? = null
     private val binding get() = _binding!!
 

@@ -14,4 +14,8 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorOnSurface">@color/blueAccent_700</item>
+        <item name="colorControlActivated">@color/blueAccent</item>
+    </style>
 </resources>

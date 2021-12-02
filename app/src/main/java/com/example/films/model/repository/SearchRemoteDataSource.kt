@@ -2,7 +2,7 @@ package com.example.films.model.repository
 
 import com.example.films.BuildConfig
 import com.example.films.SearchApi
-import com.example.films.model.entities.Film
+import com.example.films.model.entities.FilmDTO
 import com.google.gson.GsonBuilder
 import retrofit2.Callback
 import retrofit2.Retrofit
@@ -19,7 +19,7 @@ class SearchRemoteDataSource {
         )
         .build().create(SearchApi::class.java)
 
-    fun getSearchFilms(query: String, callback: Callback<Film>) {
-        searchApi.getFilms(BuildConfig.API_KEY, "en-US", query, 1, false).enqueue(callback)
+    fun getSearchFilms(query: String, adult: Boolean, callback: Callback<FilmDTO>) {
+        searchApi.getFilms(BuildConfig.API_KEY, "ru-RR", query, 1, adult).enqueue(callback)
     }
 }

@@ -44,6 +44,16 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = filmsAdapter
         }
+
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.settings -> {
+                    findNavController().navigate(R.id.action_home_to_settings, null)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun renderData(appState: AppState) = with(binding) {

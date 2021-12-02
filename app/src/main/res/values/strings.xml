@@ -10,4 +10,14 @@
     <string name="something_wrong">Something went wrong!!!</string>
     <string name="search">Search</string>
     <string name="films_search">Search Films</string>
+    <string name="content_description_settings">settings</string>
+    <string name="settings">settings</string>
+    <string name="show_adult_films">Show Adult Films</string>
+    <string name="saved_show_adult_bool_key">adult_bool</string>
+    <string name="contacts">Contacts</string>
+    <string name="permisson_to_read_contacts">Read Contacts Permission</string>
+    <string name="read_contacts_permission_explanation">Explanation</string>
+    <string name="grant_access">Grant Access</string>
+    <string name="do_not_grant_access">No Grant Access</string>
+    <string name="close">Close</string>
 </resources>
