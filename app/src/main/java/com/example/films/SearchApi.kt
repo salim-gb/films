@@ -1,6 +1,6 @@
 package com.example.films
 
-import com.example.films.model.entities.Film
+import com.example.films.model.entities.FilmDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +13,5 @@ interface SearchApi {
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query("include_adult") adult: Boolean
-    ): Call<Film>
+    ): Call<FilmDTO>
 }

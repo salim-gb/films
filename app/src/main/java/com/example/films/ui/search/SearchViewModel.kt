@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.films.AppState
 import com.example.films.model.entities.Film
 import com.example.films.model.entities.FilmDTO
-import com.example.films.model.repository.RemoteDataSource
 import com.example.films.model.repository.SearchRemoteDataSource
 import com.example.films.model.repository.SearchRepository
 import com.example.films.model.repository.SearchRepositoryImpl
@@ -24,14 +23,14 @@ class SearchViewModel(
 ) : ViewModel() {
     fun getLiveData() = searchLiveData
 
-    fun getFilmsFromRemoteSource(query: String) {
+    fun getFilmsFromRemoteSource(query: String, adult: Boolean) {
         searchLiveData.value = AppState.Loading
-        searchRepositoryImpl.getSearchFilmFromServer(query, callback)
+        searchRepositoryImpl.getSearchFilmFromServer(query, adult, callback)
     }
 
-    private val callback = object : Callback<Film> {
-        override fun onResponse(call: Call<Film>, response: Response<Film>) {
-            val serverResponse: Film? = response.body()
+    private val callback = object : Callback<FilmDTO> {
+        override fun onResponse(call: Call<FilmDTO>, response: Response<FilmDTO>) {
+            val serverResponse: FilmDTO? = response.body()
             searchLiveData.postValue(
                 if (response.isSuccessful && serverResponse != null) {
                     checkResponse(serverResponse)
@@ -41,12 +40,12 @@ class SearchViewModel(
             )
         }
 
-        override fun onFailure(call: Call<Film>, t: Throwable) {
+        override fun onFailure(call: Call<FilmDTO>, t: Throwable) {
             searchLiveData.postValue(AppState.Error(Throwable(t.message ?: REQUEST_ERROR)))
         }
     }
 
-    private fun checkResponse(serverResponse: Film): AppState {
-        return AppState.Success(listOf(serverResponse))
+    private fun checkResponse(serverResponse: FilmDTO): AppState {
+        return AppState.Success(serverResponse.results)
     }
 }

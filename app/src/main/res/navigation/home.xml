@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_home_to_detail"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_home_to_settings"
+            app:destination="@+id/settingsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -23,5 +26,11 @@
             android:name="filmId"
             app:argType="long"
             android:defaultValue="0L"/>
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.films.ui.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/settings_fragment">
     </fragment>
 </navigation>

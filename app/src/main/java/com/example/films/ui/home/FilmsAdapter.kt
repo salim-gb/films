@@ -45,6 +45,8 @@ class FilmsAdapter(private val onClick: (Film) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmsViewHolder {
+        Timber.d("inside onCreate View holder")
+
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.film_item, parent, false)
         return FilmsViewHolder(view, onClick)
@@ -52,7 +54,9 @@ class FilmsAdapter(private val onClick: (Film) -> Unit) :
 
     override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
         val film = getItem(position)
-        holder.bind(film)
+        if (film.id != 512195L) {
+            holder.bind(film)
+        }
     }
 }
 
