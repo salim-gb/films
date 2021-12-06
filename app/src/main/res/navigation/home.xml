@@ -15,7 +15,10 @@
             app:destination="@id/detailFragment" />
         <action
             android:id="@+id/action_home_to_settings"
-            app:destination="@+id/settingsFragment"/>
+            app:destination="@+id/settingsFragment" />
+        <action
+            android:id="@+id/action_home_to_map"
+            app:destination="@+id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -24,13 +27,19 @@
         tools:layout="@layout/detail_fragment">
         <argument
             android:name="filmId"
-            app:argType="long"
-            android:defaultValue="0L"/>
+            android:defaultValue="0L"
+            app:argType="long" />
     </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.films.ui.SettingsFragment"
         android:label="@string/settings"
-        tools:layout="@layout/settings_fragment">
-    </fragment>
+        tools:layout="@layout/settings_fragment" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.films.ui.map.MapFragment"
+        android:label="@string/map"
+        tools:layout="@layout/map_fragment" />
 </navigation>

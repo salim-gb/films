@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.films.AppState
 import com.example.films.R
@@ -45,14 +47,20 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             adapter = filmsAdapter
         }
 
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.settings -> {
-                    findNavController().navigate(R.id.action_home_to_settings, null)
-                    true
-                }
-                else -> false
-            }
+        binding.topAppBar.setOnMenuItemClickListener {
+            NavigationUI.onNavDestinationSelected(it, requireView().findNavController())
+
+//            when (it.itemId) {
+//                R.id.settingsFragment -> {
+//                    NavigationUI.onNavDestinationSelected(it, requireView().findNavController())
+//                    true
+//                }
+//                R.id.mapFragment -> {
+//                    NavigationUI.onNavDestinationSelected(it, requireView().findNavController())
+//                    true
+//                }
+//                else -> false
+//            }
         }
     }
 
