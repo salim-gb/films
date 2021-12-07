@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.films.BuildConfig
 import com.example.films.R
 import com.example.films.databinding.SettingsFragmentBinding
 
